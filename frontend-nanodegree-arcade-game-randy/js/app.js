@@ -1,4 +1,4 @@
-
+//Constants
 var LEN_X = 101;
 var LEN_Y = 83;
 var PLAYER_START_X_POS = 202;
@@ -16,7 +16,6 @@ var ENEMY_MAX_X_POS = 5 * LEN_X;
 // Enemies our player must avoid
 var Enemy = function(startX,startY) {
     // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -45,7 +44,7 @@ Enemy.prototype.update = function(dt) {
     var bugYTopRange = this.y -50;
     var bugYBottomRange = this.y + 50;
 
-//collision detection
+//Collision detection
     if (player.x > bugXLeftRange && player.x < bugXRightRange && player.y > bugYTopRange && player.y < bugYBottomRange) {
 
     player.reset();
@@ -54,7 +53,7 @@ Enemy.prototype.update = function(dt) {
 
 };
 
-
+//Reset enemies
 Enemy.prototype.reset = function() {
     this.x = x;
     this.y = y;
@@ -67,9 +66,7 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+// Player class
 var Player = function(x,y) {
     this.sprite = 'images/char-boy.png';
     this.x = PLAYER_START_X_POS;
@@ -86,27 +83,23 @@ Player.setSprite = function() {
 Player.update = function(dt) {
     if (player.y <= 20) {
         player.reset();
-        alert('Yaaay!  Ya win!');
+        alert('YAAAY!  Ya win!');
     }
 };
 
-
+//Draw the player on the screen
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-
+//Handle input from arrow keys
 Player.prototype.handleInput = function(direction) {
     if (direction === 'left' && this.x >25) {
         this.x -= 100;
     }
     if (direction === 'up' && this.y > 0) {
         this.y -= 61;
-
         }
-
-
-
     if (direction === 'right' && this.x < 400) {
         this.x += 100;
     }
@@ -117,7 +110,7 @@ Player.prototype.handleInput = function(direction) {
 };
 
 
-
+//Reset player to start position
 Player.prototype.reset = function(){
     this.x = PLAYER_START_X_POS;
     this.y = PLAYER_START_Y_POS;
