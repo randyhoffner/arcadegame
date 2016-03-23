@@ -80,8 +80,8 @@ Player.setSprite = function() {
 };
 
 //player reaches the water and wins
-Player.update = function(dt) {
-    if (player.y <= 20) {
+Player.prototype.update = function(dt) {
+    if (this.y <= 20) {
         player.reset();
         alert('YAAAY!  Ya win!');
     }
